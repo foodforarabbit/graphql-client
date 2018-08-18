@@ -1,43 +1,20 @@
 import React from 'react';
-import { Query } from "react-apollo";
-import Book from '../../models/Book';
-import { Link } from 'react-router-dom';
+import AuthorLink from '../AuthorLink';
+import VoteStyle from '../VoteStyle';
 
-const Books = ({ id }) => (
-  <Query
-    query={Book.queries.getBook}
-    variables={{
-      id
-    }}
-  >
-    {({
-      loading,
-      error,
-      data,
-      refetch,
-    }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
+const Book = ({ book }) => {
+  const {
+    id,
+    title,
+    author,
+    votes,
+  } = book;
+  return <div>
+    <p>id: {id}</p>
+    <p>title: <b>{title}</b></p>
+    <p>votes: <VoteStyle votes={votes} /></p>
+    <p>author: <AuthorLink author={author} /></p>
+  </div>
+}
 
-      return <div>
-        <button onClick={() => refetch()}>Refetch!</button>
-        <Link to="/books">Back to books</Link>
-        {
-          [data.book].map(({ id, title, author, votes }) => (
-            <div key={id}>
-              <p>id: {id}</p>
-              <p>title: <b>{title}</b></p>
-              <p>votes: <span style={{color: votes >= 0 ? 'green' : 'red'}}>{votes}</span></p>
-              <p>author: {author.firstName} {author.lastName}</p>
-
-
-              <p></p>
-            </div>
-          ))
-        }
-      </div>
-    }}
-  </Query>
-);
-
-export default Books;
+export default Book;

@@ -3,6 +3,8 @@ import './App.css';
 import HomePage from './containers/HomePage';
 import BooksPage from './containers/BooksPage';
 import BookPage from './containers/BookPage';
+import AuthorsPage from './containers/AuthorsPage';
+import AuthorPage from './containers/AuthorPage';
 import {
   BrowserRouter as Router,
   Route,
@@ -26,6 +28,8 @@ class App extends Component {
           <Route exact path="/" component={HomePage}/>
           <Route path="/books" component={BooksPage}/>
           <Route path="/book/:id" component={BookPage}/>
+          <Route path="/authors" component={AuthorsPage}/>
+          <Route path="/author/:id" component={AuthorPage}/>
         </div>
       </Router>
     );

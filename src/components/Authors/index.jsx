@@ -1,14 +1,15 @@
 import React from 'react';
 import { Query } from "react-apollo";
-import Book from '../../models/Book';
+import Author from '../../models/Author';
 import InfiniteScroll from 'react-infinite-scroller';
 import { Link } from 'react-router-dom';
+import AuthorLink from '../AuthorLink';
 
-const Books = ({ title, orderBy, asc }) => (
+const Authors = ({ name, orderBy, asc }) => (
   <Query
-    query={Book.queries.searchBooks}
+    query={Author.queries.searchAuthors}
     variables={{
-      title,
+      name,
       orderBy,
       asc,
       offset: 0,
@@ -28,12 +29,12 @@ const Books = ({ title, orderBy, asc }) => (
       const loadMore = () => {
         fetchMore({
           variables: {
-            offset: data.books.length
+            offset: data.authors.length
           },
           updateQuery: (prev, { fetchMoreResult }) => {
             if (!fetchMoreResult) return prev;
             return Object.assign({}, prev, {
-              books: [...prev.books, ...fetchMoreResult.books]
+              authors: [...prev.authors, ...fetchMoreResult.authors]
             });
           }
         })
@@ -48,10 +49,9 @@ const Books = ({ title, orderBy, asc }) => (
             loader={<div className="loader" key={0}></div>}
         >
           {
-            data.books.map(({ id, title, author, votes }) => (
-              <div key={id}>
-                <p>{`${id}:`} <Link to={`/book/${id}`}><b>{`${title}`}</b></Link> by: {`${author.firstName} ${author.lastName}`} (<span style={{color: votes >= 0 ? 'green' : 'red'}}>{`${votes}`}</span>)</p>
-                <p></p>
+            data.authors.map((author) => (
+              <div key={author.id}>
+                {`${author.id}:`} <AuthorLink author={author}/>
               </div>
             ))
           }
@@ -61,4 +61,4 @@ const Books = ({ title, orderBy, asc }) => (
   </Query>
 );
 
-export default Books;
+export default Authors;

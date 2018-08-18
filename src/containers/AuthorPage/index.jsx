@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import BookData from '../../components/BookData';
-class BookPage extends Component {
+import Author from '../../components/Author';
+class AuthorPage extends Component {
 
   render() {
     const {
@@ -13,10 +13,10 @@ class BookPage extends Component {
 
     return (
       <div>
-        <BookData id={id} />
+        <Author id={id} />
       </div>
     );
   }
 }
 
-export default BookPage;
+export default AuthorPage;

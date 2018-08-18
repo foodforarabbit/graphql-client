@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import BooksData from '../../components/BooksData';
+import Authors from '../../components/Authors';
 import {
   debounce,
 } from 'lodash';
-class BooksPage extends Component {
+class AuthorsPage extends Component {
   state = {
     searchInput: '',
     search: '',
@@ -60,13 +60,13 @@ class BooksPage extends Component {
         <p>
           orderBy {asc ? '↑' : '↓'}:
           <a style={{padding: '0px 8px', cursor: 'pointer', fontWeight: orderBy === 'id' ? 'bold' : 'normal'}}onClick={this.handleSort('id')}>id</a>
-          <a style={{padding: '0px 8px', cursor: 'pointer', fontWeight: orderBy === 'title' ? 'bold' : 'normal'}}onClick={this.handleSort('title')}>title</a>
-          <a style={{padding: '0px 8px', cursor: 'pointer', fontWeight: orderBy === 'votes' ? 'bold' : 'normal'}}onClick={this.handleSort('votes')}>votes</a>
+          <a style={{padding: '0px 8px', cursor: 'pointer', fontWeight: orderBy === 'firstName' ? 'bold' : 'normal'}}onClick={this.handleSort('firstName')}>firstName</a>
+          <a style={{padding: '0px 8px', cursor: 'pointer', fontWeight: orderBy === 'lastName' ? 'bold' : 'normal'}}onClick={this.handleSort('lastName')}>lastName</a>
         </p>
-        <BooksData title={search} orderBy={orderBy} asc={asc} />
+        <Authors name={search} orderBy={orderBy} asc={asc} />
       </div>
     );
   }
 }
 
-export default BooksPage;
+export default AuthorsPage;
