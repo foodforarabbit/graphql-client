@@ -1,15 +1,15 @@
 import gql from "graphql-tag";
 
 const fragments = {
-  Data: gql`
-    fragment Data on Book {
+  BookData: gql`
+    fragment BookData on Book {
       id,
       title,
       votes
     }
   `,
-  WithAuthor: gql`
-    fragment WithAuthor on Book {
+  BookWithAuthor: gql`
+    fragment BookWithAuthor on Book {
       author {
         id,
         firstName,
@@ -23,38 +23,38 @@ const queries = {
   getBook: gql`
     query GetBook($id: Int!) {
       book: getBook(id: $id) {
-        ...Data
-        ...WithAuthor
+        ...BookData
+        ...BookWithAuthor
       }
     }
-    ${fragments.Data}
-    ${fragments.WithAuthor}
+    ${fragments.BookData}
+    ${fragments.BookWithAuthor}
   `,
   searchBooks: gql`
     query SearchBookByTitle($title: String!, $orderBy: String, $asc: Boolean, $offset: Int, $limit: Int) {
       books: searchBooks(title: $title, orderBy: $orderBy, asc: $asc, offset: $offset, limit: $limit) {
-        ...Data
-        ...WithAuthor
+        ...BookData
+        ...BookWithAuthor
       }
     }
-    ${fragments.Data}
-    ${fragments.WithAuthor}
+    ${fragments.BookData}
+    ${fragments.BookWithAuthor}
   `,
   upvoteBook: gql`
     mutation UpvoteBook($id: Int!) {
       book: upvoteBook(id: $id) {
-        ...Data
+        ...BookData
       }
     }
-    ${fragments.Data}
+    ${fragments.BookData}
   `,
   downvoteBook: gql`
     mutation DownvoteBook($id: Int!) {
       book: downvoteBook(id: $id) {
-        ...Data
+        ...BookData
       }
     }
-    ${fragments.Data}
+    ${fragments.BookData}
   `,
 }
 

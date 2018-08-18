@@ -1,15 +1,15 @@
 import gql from "graphql-tag";
 
 const fragments = {
-  Data: gql`
-    fragment Data on Author {
+  AuthorData: gql`
+    fragment AuthorData on Author {
       id,
       firstName,
       lastName
     }
   `,
-  WithBooks: gql`
-    fragment WithBooks on Author {
+  AuthorWithBooks: gql`
+    fragment AuthorWithBooks on Author {
       books {
         id,
         title,
@@ -23,22 +23,22 @@ const queries = {
   getAuthor: gql`
     query GetAuthor($id: Int!) {
       author: getAuthor(id: $id) {
-        ...Data
-        ...WithBooks
+        ...AuthorData
+        ...AuthorWithBooks
       }
     }
-    ${fragments.Data}
-    ${fragments.WithBooks}
+    ${fragments.AuthorData}
+    ${fragments.AuthorWithBooks}
   `,
   searchAuthors: gql`
     query SearchAuthorByName($name: String!, $orderBy: String, $asc: Boolean, $offset: Int, $limit: Int) {
       authors: searchAuthors(name: $name, orderBy: $orderBy, asc: $asc, offset: $offset, limit: $limit) {
-        ...Data
-        ...WithBooks
+        ...AuthorData
+        ...AuthorWithBooks
       }
     }
-    ${fragments.Data}
-    ${fragments.WithBooks}
+    ${fragments.AuthorData}
+    ${fragments.AuthorWithBooks}
   `,
 }
 

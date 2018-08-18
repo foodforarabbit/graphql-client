@@ -3,7 +3,6 @@ import BookModel from '../../models/Book';
 import { Mutation } from "react-apollo";
 
 const VoteStyle = ({ votes, id }) => {
-  // return <span style={{color: votes >= 0 ? 'green' : 'red'}}>{`${votes}`}</span>;
 	return <Mutation
     mutation={BookModel.queries.upvoteBook}
   >
