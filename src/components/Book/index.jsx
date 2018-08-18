@@ -12,7 +12,7 @@ const Book = ({ book }) => {
   return <div>
     <p>id: {id}</p>
     <p>title: <b>{title}</b></p>
-    <p>votes: <VoteStyle votes={votes} /></p>
+    <p>votes: <VoteStyle votes={votes} id={id} /></p>
     <p>author: <AuthorLink author={author} /></p>
   </div>
 }

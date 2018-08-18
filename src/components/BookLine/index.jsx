@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import AuthorLink from '../AuthorLink';
 import BookLink from '../BookLink';
@@ -8,11 +7,11 @@ import VoteStyle from '../VoteStyle';
 const BookLine = ({ book }) => {
   const {
     id,
-    title,
     author,
     votes,
   } = book;
   return <span>
+    <VoteStyle votes={votes} id={id} />{' '}
     {`${id}: `}
     <b>
       <BookLink book={book} />
@@ -20,10 +19,9 @@ const BookLine = ({ book }) => {
     {
       author &&
       <span style={{fontSize: 12}}>
-        {' '}by: <AuthorLink author={author} />
+        {' '}by: <AuthorLink author={author} id={id} />
       </span>
     }
-    (<VoteStyle votes={votes} />)
   </span>
 }
 

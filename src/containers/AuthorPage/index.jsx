@@ -13,7 +13,7 @@ class AuthorPage extends Component {
 
     return (
       <div>
-        <Author id={id} />
+        <Author id={parseInt(id)} />
       </div>
     );
   }

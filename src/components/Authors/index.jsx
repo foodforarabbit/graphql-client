@@ -2,7 +2,6 @@ import React from 'react';
 import { Query } from "react-apollo";
 import Author from '../../models/Author';
 import InfiniteScroll from 'react-infinite-scroller';
-import { Link } from 'react-router-dom';
 import AuthorLink from '../AuthorLink';
 
 const Authors = ({ name, orderBy, asc }) => (

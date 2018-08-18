@@ -13,7 +13,7 @@ class BookPage extends Component {
 
     return (
       <div>
-        <BookData id={id} />
+        <BookData id={parseInt(id)} />
       </div>
     );
   }

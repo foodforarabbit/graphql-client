@@ -40,6 +40,22 @@ const queries = {
     ${fragments.Data}
     ${fragments.WithAuthor}
   `,
+  upvoteBook: gql`
+    mutation UpvoteBook($id: Int!) {
+      book: upvoteBook(id: $id) {
+        ...Data
+      }
+    }
+    ${fragments.Data}
+  `,
+  downvoteBook: gql`
+    mutation DownvoteBook($id: Int!) {
+      book: downvoteBook(id: $id) {
+        ...Data
+      }
+    }
+    ${fragments.Data}
+  `,
 }
 
 export default {
